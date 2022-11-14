@@ -471,7 +471,7 @@ keypress(XKeyEvent *ev)
 		break;
 	}
 
-	if (ev->state & ControlMask) {
+	if (ev->state && (ControlMask || (ShiftMask && XK_Insert))) {
 		switch(ksym) {
 		case XK_a: ksym = XK_Home;      break;
 		case XK_b: ksym = XK_Left;      break;
@@ -502,8 +502,8 @@ keypress(XKeyEvent *ev)
 			while (cursor > 0 && !strchr(worddelimiters, text[nextrune(-1)]))
 				insert(NULL, nextrune(-1) - cursor);
 			break;
-		case XK_y: /* paste selection */
-		case XK_Y:
+		case XK_v: /* paste selection */
+		case XK_Insert:
 			XConvertSelection(dpy, (ev->state & ShiftMask) ? clip : XA_PRIMARY,
 			                  utf8, utf8, win, CurrentTime);
 			return;
