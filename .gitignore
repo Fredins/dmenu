@@ -1,0 +1,13 @@
+config.h
+config.mk.orig
+dmenu.c.orig
+config.def.h.orig
+dmenu
+dmenu.c.rej
+dmenu.o
+drw.o
+stest
+stest.o
+util.o
+
+
